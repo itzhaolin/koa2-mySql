@@ -20,9 +20,9 @@ router.get('/userList', async (ctx, next) => {
   }
 })
 
-router.get('/aa', async (ctx, next) => {
+router.get('/json', async (ctx, next) => {
   ctx.body = {
-    title: 'aa'
+    title: 'json'
   }
 })
 
