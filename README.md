@@ -7,3 +7,4 @@
 * 学习mySql语法(增删改查)
 * 方便后续接入react管理后台项目
 * 增加koa2-cors中间件允许跨域
+* 使用koa-body上传文件 & koa-static读取上传文件

@@ -31,12 +31,13 @@ app.use(bodyparser({
 app.use(cors())
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
+// 静态资源
+app.use(static(__dirname + '/public'))
+app.use(static(path.join(__dirname)));
 
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
-app.use(static(path.join(__dirname)));
 
 // logger & catch error
 app.use(async (ctx, next) => {
