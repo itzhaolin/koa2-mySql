@@ -6,12 +6,23 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const cors = require('koa2-cors')
+const koaBody = require('koa-body')
+const static = require('koa-static');
+const path = require('path')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 
 // error handler
 onerror(app)
+
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFieldsSize: 20 * 1024 * 1024, // 最大文件为20兆
+    multipart: true // 是否支持 multipart-formdate 的表单
+  }
+}))
 
 // middlewares
 app.use(bodyparser({
@@ -25,6 +36,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
+app.use(static(path.join(__dirname)));
 
 // logger & catch error
 app.use(async (ctx, next) => {
